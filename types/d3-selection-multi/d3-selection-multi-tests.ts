@@ -34,7 +34,7 @@ selection = selection.attrs({
 });
 
 // Function that returns a map
-selection = selection.attrs(function(d, i, g) {
+selection = selection.attrs(function(d, i, g): {} | { id: string } {
     const that: HTMLAnchorElement = this;
     const index: number = i;
     const group: HTMLAnchorElement[] | ArrayLike<HTMLAnchorElement> = g;
