@@ -142,11 +142,11 @@ declare module "ember-data" {
             /**
              * Builds a URL for a `store.query(type, query)` call.
              */
-            urlForQuery(query: {}, modelName: string): string;
+            urlForQuery(query: {}, modelName: string, snapshot: Snapshot): string;
             /**
              * Builds a URL for a `store.queryRecord(type, query)` call.
              */
-            urlForQueryRecord(query: {}, modelName: string): string;
+            urlForQueryRecord(query: {}, modelName: string, snapshot: Snapshot): string;
             /**
              * Builds a URL for coalesceing multiple `store.findRecord(type, id)`
              * records into 1 request when the adapter's `coalesceFindRequests`
@@ -1317,11 +1317,11 @@ declare module "ember-data" {
             /**
              * Builds a URL for a `store.query(type, query)` call.
              */
-            urlForQuery(query: {}, modelName: string): string;
+            urlForQuery(query: {}, modelName: string, snapshot: Snapshot): string;
             /**
              * Builds a URL for a `store.queryRecord(type, query)` call.
              */
-            urlForQueryRecord(query: {}, modelName: string): string;
+            urlForQueryRecord(query: {}, modelName: string, snapshot: Snapshot): string;
             /**
              * Builds a URL for coalesceing multiple `store.findRecord(type, id)`
              * records into 1 request when the adapter's `coalesceFindRequests`
