@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import { assertType } from './lib/assert';
+import EmberObject from '@ember/object';
 
 const Person = Ember.Object.extend({
     firstName: '',
@@ -59,3 +60,14 @@ assertType<boolean>(PersonWithStatics.isPerson);
 assertType<boolean>(PersonWithStatics2.isPerson);
 assertType<boolean>(PersonWithStatics3.isPerson);
 assertType<boolean>(PersonWithStatics4.isPerson);
+
+class Component extends EmberObject {
+    static positionalParams: string | string[];
+}
+Component.positionalParams; // $ExpectType string | string[]
+
+class Component2 extends Component {}
+Component2.positionalParams; // $ExpectType string | string[]
+
+const Component3 = Component.extend();
+Component3.positionalParams; // $ExpectType string | string[]

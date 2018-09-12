@@ -23,7 +23,7 @@ declare module 'ember' {
         UnwrapComputedPropertyGetter,
         ComputedPropertyCallback
     } from 'ember/-private-types/object/computed';
-    import { Objectify, Fix } from 'ember/-private-types/utils';
+    import { Mix3, Mix, Mix4, Mix5 } from 'ember/-private-types/utils';
     import { EmberClassArguments, EmberClassConstructor, EmberInstanceArguments } from 'ember/-private-types/object';
 
     // Capitalization is intentional: this makes it much easier to re-export RSVP on
@@ -787,7 +787,7 @@ declare module 'ember' {
              * Defines the properties that will be concatenated from the superclass (instead of overridden).
              * @default null
              */
-            concatenatedProperties: any[];
+            concatenatedProperties: string[];
 
             /**
             Destroyed object property flag. If this property is true the observers and bindings were
@@ -853,12 +853,12 @@ declare module 'ember' {
 
             static extend<Statics, Instance>(
                 this: Statics & EmberClassConstructor<Instance>
-            ): Objectify<Statics> & EmberClassConstructor<Instance>;
+            ): Statics & EmberClassConstructor<Instance>;
 
             static extend<Statics, Instance extends B1, T1 extends EmberClassArguments, B1>(
                 this: Statics & EmberClassConstructor<Instance>,
-                arg1: MixinOrLiteral<T1, B1> & ThisType<Fix<Instance & T1>>
-            ): Objectify<Statics> & EmberClassConstructor<T1 & Instance>;
+                arg1: MixinOrLiteral<T1, B1> & ThisType<Instance & T1>
+            ): Statics & EmberClassConstructor<Instance & T1>;
 
             static extend<
                 Statics,
@@ -869,9 +869,9 @@ declare module 'ember' {
                 B2
             >(
                 this: Statics & EmberClassConstructor<Instance>,
-                arg1: MixinOrLiteral<T1, B1> & ThisType<Fix<Instance & T1>>,
-                arg2: MixinOrLiteral<T2, B2> & ThisType<Fix<Instance & T1 & T2>>
-            ): Objectify<Statics> & EmberClassConstructor<T1 & T2 & Instance>;
+                arg1: MixinOrLiteral<T1, B1> & ThisType<Instance & T1>,
+                arg2: MixinOrLiteral<T2, B2> & ThisType<Instance & Mix<T1, T2>>
+            ): Statics & EmberClassConstructor<Instance & Mix<T1, T2>>;
 
             static extend<
                 Statics,
@@ -884,10 +884,10 @@ declare module 'ember' {
                 B3
             >(
                 this: Statics & EmberClassConstructor<Instance>,
-                arg1: MixinOrLiteral<T1, B1> & ThisType<Fix<Instance & T1>>,
-                arg2: MixinOrLiteral<T2, B2> & ThisType<Fix<Instance & T1 & T2>>,
-                arg3: MixinOrLiteral<T3, B3> & ThisType<Fix<Instance & T1 & T2 & T3>>
-            ): Objectify<Statics> & EmberClassConstructor<T1 & T2 & T3 & Instance>;
+                arg1: MixinOrLiteral<T1, B1> & ThisType<Instance & T1>,
+                arg2: MixinOrLiteral<T2, B2> & ThisType<Instance & Mix<T1, T2>>,
+                arg3: MixinOrLiteral<T3, B3> & ThisType<Instance & Mix3<T1, T2, T3>>
+            ): Statics & EmberClassConstructor<Instance & Mix3<T1, T2, T3>>;
 
             static extend<
                 Statics,
@@ -902,20 +902,20 @@ declare module 'ember' {
                 B4
             >(
                 this: Statics & EmberClassConstructor<Instance>,
-                arg1: MixinOrLiteral<T1, B1> & ThisType<Fix<Instance & T1>>,
-                arg2: MixinOrLiteral<T2, B2> & ThisType<Fix<Instance & T1 & T2>>,
-                arg3: MixinOrLiteral<T3, B3> & ThisType<Fix<Instance & T1 & T2 & T3>>,
-                arg4: MixinOrLiteral<T4, B4> & ThisType<Fix<Instance & T1 & T2 & T3 & T4>>
-            ): Objectify<Statics> & EmberClassConstructor<T1 & T2 & T3 & T4 & Instance>;
+                arg1: MixinOrLiteral<T1, B1> & ThisType<Instance & T1>,
+                arg2: MixinOrLiteral<T2, B2> & ThisType<Instance & Mix<T1, T2>>,
+                arg3: MixinOrLiteral<T3, B3> & ThisType<Instance & Mix3<T1, T2, T3>>,
+                arg4: MixinOrLiteral<T4, B4> & ThisType<Instance & Mix4<T1, T2, T3, T4>>
+            ): Statics & EmberClassConstructor<Instance & Mix4<T1, T2, T3, T4>>;
 
             static reopen<Statics, Instance>(
                 this: Statics & EmberClassConstructor<Instance>
-            ): Objectify<Statics> & EmberClassConstructor<Instance>;
+            ): Statics & EmberClassConstructor<Instance>;
 
             static reopen<Statics, Instance extends B1, T1 extends EmberClassArguments, B1>(
                 this: Statics & EmberClassConstructor<Instance>,
-                arg1: MixinOrLiteral<T1, B1> & ThisType<Fix<Instance & T1>>
-            ): Objectify<Statics> & EmberClassConstructor<Instance & T1>;
+                arg1: MixinOrLiteral<T1, B1> & ThisType<Instance & T1>
+            ): Statics & EmberClassConstructor<Instance & T1>;
 
             static reopen<
                 Statics,
@@ -926,9 +926,9 @@ declare module 'ember' {
                 B2
             >(
                 this: Statics & EmberClassConstructor<Instance>,
-                arg1: MixinOrLiteral<T1, B1> & ThisType<Fix<Instance & T1>>,
-                arg2: MixinOrLiteral<T2, B2> & ThisType<Fix<Instance & T1 & T2>>
-            ): Objectify<Statics> & EmberClassConstructor<Instance & T1 & T2>;
+                arg1: MixinOrLiteral<T1, B1> & ThisType<Instance & T1>,
+                arg2: MixinOrLiteral<T2, B2> & ThisType<Instance & Mix<T1, T2>>
+            ): Statics & EmberClassConstructor<Instance & Mix<T1, T2>>;
 
             static reopen<
                 Statics,
@@ -941,10 +941,10 @@ declare module 'ember' {
                 B3
             >(
                 this: Statics & EmberClassConstructor<Instance>,
-                arg1: MixinOrLiteral<T1, B1> & ThisType<Fix<Instance & T1>>,
-                arg2: MixinOrLiteral<T2, B2> & ThisType<Fix<Instance & T1 & T2>>,
-                arg3: MixinOrLiteral<T3, B3> & ThisType<Fix<Instance & T1 & T2 & T3>>
-            ): Objectify<Statics> & EmberClassConstructor<Instance & T1 & T2 & T3>;
+                arg1: MixinOrLiteral<T1, B1> & ThisType<Instance & T1>,
+                arg2: MixinOrLiteral<T2, B2> & ThisType<Instance & Mix<T1, T2>>,
+                arg3: MixinOrLiteral<T3, B3> & ThisType<Instance & Mix3<T1, T2, T3>>
+            ): Statics & EmberClassConstructor<Instance & Mix3<T1, T2, T3>>;
 
             static reopenClass<Statics>(this: Statics): Statics;
 
@@ -969,7 +969,7 @@ declare module 'ember' {
             static detect<Statics, Instance>(
                 this: Statics & EmberClassConstructor<Instance>,
                 obj: any
-            ): obj is Objectify<Statics> & EmberClassConstructor<Instance>;
+            ): obj is Statics & EmberClassConstructor<Instance>;
 
             static detectInstance<Instance>(
                 this: EmberClassConstructor<Instance>,
@@ -1106,7 +1106,7 @@ declare module 'ember' {
             /**
              * Unregister a factory.
              */
-            unregister(fullName: string): any;
+            // unregister(fullName: string): any;
 
             /**
              *  Initialize the `EngineInstance` and return a promise that resolves
@@ -1505,25 +1505,25 @@ declare module 'ember' {
             __ember_mixin__: never;
 
             static create<T, Base = Ember.Object>(
-              args?: MixinOrLiteral<T, Base> & ThisType<Fix<T & Base>>
+              args?: MixinOrLiteral<T, Base> & ThisType<T & Base>
             ): Mixin<T, Base>;
 
             static create<T1, T2, Base = Ember.Object>(
-              arg1: MixinOrLiteral<T1, Base> & ThisType<Fix<T1 & Base>>,
-              arg2: MixinOrLiteral<T2, Base> & ThisType<Fix<T2 & Base>>
+              arg1: MixinOrLiteral<T1, Base> & ThisType<T1 & Base>,
+              arg2: MixinOrLiteral<T2, Base> & ThisType<T2 & Base>
             ): Mixin<T1 & T2, Base>;
 
             static create<T1, T2, T3, Base = Ember.Object>(
-              arg1: MixinOrLiteral<T1, Base> & ThisType<Fix<T1 & Base>>,
-              arg2: MixinOrLiteral<T2, Base> & ThisType<Fix<T2 & Base>>,
-              arg3: MixinOrLiteral<T3, Base> & ThisType<Fix<T3 & Base>>
+              arg1: MixinOrLiteral<T1, Base> & ThisType<T1 & Base>,
+              arg2: MixinOrLiteral<T2, Base> & ThisType<T2 & Base>,
+              arg3: MixinOrLiteral<T3, Base> & ThisType<T3 & Base>
             ): Mixin<T1 & T2 & T3, Base>;
 
             static create<T1, T2, T3, T4, Base = Ember.Object>(
-              arg1: MixinOrLiteral<T1, Base> & ThisType<Fix<T1 & Base>>,
-              arg2: MixinOrLiteral<T2, Base> & ThisType<Fix<T2 & Base>>,
-              arg3: MixinOrLiteral<T3, Base> & ThisType<Fix<T3 & Base>>,
-              arg4: MixinOrLiteral<T4, Base> & ThisType<Fix<T4 & Base>>
+              arg1: MixinOrLiteral<T1, Base> & ThisType<T1 & Base>,
+              arg2: MixinOrLiteral<T2, Base> & ThisType<T2 & Base>,
+              arg3: MixinOrLiteral<T3, Base> & ThisType<T3 & Base>,
+              arg4: MixinOrLiteral<T4, Base> & ThisType<T4 & Base>
             ): Mixin<T1 & T2 & T3 & T4, Base>;
         }
         /**
@@ -1954,7 +1954,7 @@ declare module 'ember' {
              * Sends an action to the router, which will delegate it to the currently active
              * route hierarchy per the bubbling rules explained under actions.
              */
-            send(name: string, ...args: any[]): void;
+            // send(name: string, ...args: any[]): void;
 
             /**
              * A hook you can implement to convert the route's model into parameters

@@ -7,8 +7,11 @@
  * Implementation is carefully chosen for the reasons described in
  * https://github.com/typed-ember/ember-typings/pull/29
  */
-export type Objectify<T> = Readonly<T>;
 export type ExtractPropertyNamesOfType<T, S> = {
     [K in keyof T]: T[K] extends S ? K : never
 }[keyof T];
-export type Fix<T> = { [K in keyof T]: T[K] };
+
+export type Mix<A, B> = B & Pick<A, Exclude<keyof A, keyof B>>;
+export type Mix3<A, B, C> = Mix<Mix<A, B>, C>;
+export type Mix4<A, B, C, D> = Mix3<Mix<A, B>, C, D>;
+export type Mix5<A, B, C, D, E> = Mix4<Mix<A, B>, C, D, E>;
