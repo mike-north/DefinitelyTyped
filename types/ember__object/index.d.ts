@@ -14,6 +14,7 @@ import {
     UnwrapComputedPropertySetters
 } from '@ember/object/-private/types';
 import ComputedProperty from '@ember/object/computed';
+import './-private/action-handler';
 
 /**
  * `Ember.Object` is the main base class for all Ember objects. It is a subclass
