@@ -33,7 +33,6 @@ interface Options {
 }
 
 interface SassError extends Error {
-    message: string;
     line: number;
     column: number;
     status: number;
